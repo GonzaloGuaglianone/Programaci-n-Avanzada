@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso Interactivo: Programación Avanzada (POO en Java)</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --accent: #dc2626;
+            --success: #16a34a;
+            --bg-light: #f8fafc;
+            --text-color: #1e293b;
+            --border-color: #cbd5e1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 0;
+            color: #93c5fd;
+            font-size: 1.1rem;
+        }
+
+        .tabs-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .tab-buttons {
+            display: flex;
+            background-color: #e2e8f0;
+            overflow-x: auto;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .tab-btn {
+            background-color: transparent;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .tab-btn:hover {
+            background-color: #cbd5e1;
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background-color: white;
+            color: var(--secondary);
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2.5rem;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--secondary);
+            margin-top: 1.5rem;
+        }
+
+        .box {
+            background: var(--bg-light);
+            border-left: 4px solid var(--secondary);
+            padding: 1.2rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .box-exercise {
+            border-left-color: var(--accent);
+            background: #fff5f5;
+        }
+
+        pre {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .solution-container {
+            margin-top: 1rem;
+        }
+
+        .solution-btn {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: 600;
+        }
+
+        .solution-btn:hover {
+            background-color: #15803d;
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 1rem;
+            border: 2px dashed var(--success);
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f0fdf4;
+        }
+
+        .solution-content.show {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Programación Avanzada</h1>
+    <p>Módulo de Repaso Autónomo e Incremental (POO en Java)</p>
+</header>
+
+<div class="tabs-container">
+    <div class="tab-buttons">
+        <button class="tab-btn active" onclick="openTab(event, 'tab1')">1. Clases y Objetos</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab2')">2. Encapsulamiento</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab3')">3. Herencia</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab4')">4. Polimorfismo</button>
+    </div>
+
+    <!-- PESTAÑA 1 -->
+    <div id="tab1" class="tab-content active">
+        <h2>Unidad 1: Clases y Objetos</h2>
+        <div class="box">
+            <h3>Concepto</h3>
+            <p>En Java, una <strong>clase</strong> es un molde que define las propiedades (atributos) y comportamientos (métodos) que tendrán los objetos. Un <strong>objeto</strong> es una instancia concreta creada a partir de ese molde usando la palabra clave <code>new</code>.</p>
+        </div>
+        <div class="box">
+            <h3>Ejemplo práctico en Java</h3>
+            <pre><code>public class Perro {
+    String nombre;
+    String raza;
+
+    public void ladrar() {
+        System.out.println(nombre + " está ladrando: ¡Guau guau!");
+    }
+
+    public static void main(String[] args) {
+        Perro miPerro = new Perro();
+        miPerro.nombre = "Firulais";
+        miPerro.raza = "Golden Retriever";
+        miPerro.ladrar();
+    }
+}</code></pre>
+        </div>
+        <div class="box box-exercise">
+            <h3>Ejercicio Práctico</h3>
+            <p>Crea una clase llamada <code>Libro</code> que tenga dos atributos de tipo <code>String</code>: <code>titulo</code> y <code>autor</code>. Añade un método <code>mostrarInfo()</code> que imprima ambos datos en consola. En el método <code>main</code>, crea un objeto de la clase <code>Libro</code>, asigna valores y llama al método.</p>
+        </div>
+        <div class="solution-container">
+            <button class="solution-btn" onclick="toggleSolution('sol1')">Ver Solución</button>
+            <div id="sol1" class="solution-content">
+                <h4>Solución sugerida:</h4>
+                <pre><code>public class Libro {
+    String titulo;
+    String autor;
+
+    public void mostrarInfo() {
+        System.out.println("Título: " + titulo + " | Autor: " + autor);
+    }
+
+    public static void main(String[] args) {
+        Libro miLibro = new Libro();
+        miLibro.titulo = "Cien años de soledad";
+        miLibro.autor = "Gabriel García Márquez";
+        miLibro.mostrarInfo();
+    }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- PESTAÑA 2 -->
+    <div id="tab2" class="tab-content">
+        <h2>Unidad 2: Encapsulamiento</h2>
+        <div class="box">
+            <h3>Concepto</h3>
+            <p>El <strong>encapsulamiento</strong> protege los datos internos de una clase declarando sus atributos como <code>private</code>. Para interactuar con ellos de forma segura, se usan métodos públicos conocidos como <strong>Getters</strong> y <strong>Setters</strong>.</p>
+        </div>
+        <div class="box">
+            <h3>Ejemplo práctico en Java</h3>
+            <pre><code>public class CuentaBancaria {
+    private double saldo;
+
+    public void setSaldo(double m) {
+        if (m >= 0) {
+            saldo = m;
+        } else {
+            System.out.println("Error: Saldo negativo.");
+        }
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public static void main(String[] args) {
+        CuentaBancaria cuenta = new CuentaBancaria();
+        cuenta.setSaldo(1500.50);
+        System.out.println("Saldo actual: $" + cuenta.getSaldo());
+    }
+}</code></pre>
+        </div>
+        <div class="box box-exercise">
+            <h3>Ejercicio Práctico</h3>
+            <p>Crea una clase <code>Persona</code> con un atributo privado <code>int edad</code>. Implementa un método <code>setEdad(int e)</code> que valide que la edad sea mayor o igual a 0 (si es menor, muestra error) y el método <code>getEdad()</code>.</p>
+        </div>
+        <div class="solution-container">
+            <button class="solution-btn" onclick="toggleSolution('sol2')">Ver Solución</button>
+            <div id="sol2" class="solution-content">
+                <h4>Solución sugerida:</h4>
+                <pre><code>public class Persona {
+    private int edad;
+
+    public void setEdad(int e) {
+        if (e >= 0) {
+            edad = e;
+        } else {
+            System.out.println("Error: La edad no puede ser negativa.");
+        }
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public static void main(String[] args) {
+        Persona p = new Persona();
+        p.setEdad(25);
+        System.out.println("La edad es: " + p.getEdad());
+    }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- PESTAÑA 3 -->
+    <div id="tab3" class="tab-content">
+        <h2>Unidad 3: Herencia</h2>
+        <div class="box">
+            <h3>Concepto</h3>
+            <p>La <strong>herencia</strong> permite que una clase nueva (hija) adquiera atributos y métodos de una existente (padre) usando la palabra clave <code>extends</code>.</p>
+        </div>
+        <div class="box">
+            <h3>Ejemplo práctico en Java</h3>
+            <pre><code>class Vehiculo {
+    String marca;
+    public void mostrarMarca() {
+        System.out.println("Marca: " + marca);
+    }
+}
+
+public class Auto extends Vehiculo {
+    int puertas;
+    public void mostrarAuto() {
+        System.out.println("Tiene " + puertas + " puertas.");
+    }
+
+    public static void main(String[] args) {
+        Auto miAuto = new Auto();
+        miAuto.marca = "Toyota";
+        miAuto.puertas = 4;
+        miAuto.mostrarMarca();
+        miAuto.mostrarAuto();
+    }
+}</code></pre>
+        </div>
+        <div class="box box-exercise">
+            <h3>Ejercicio Práctico</h3>
+            <p>Crea una clase base <code>Empleado</code> con el atributo <code>String nombre</code> y un método <code>trabajar()</code>. Crea una clase derivada <code>Gerente</code> que extienda de <code>Empleado</code>, agregue el atributo <code>String departamento</code> y un método <code>organizar()</code>.</p>
+        </div>
+        <div class="solution-container">
+            <button class="solution-btn" onclick="toggleSolution('sol3')">Ver Solución</button>
+            <div id="sol3" class="solution-content">
+                <h4>Solución sugerida:</h4>
+                <pre><code>class Empleado {
+    String nombre;
+    public void trabajar() {
+        System.out.println(nombre + " está trabajando.");
+    }
+}
+
+public class Gerente extends Empleado {
+    String departamento;
+    public void organizar() {
+        System.out.println(nombre + " organiza el departamento de " + departamento + ".");
+    }
+
+    public static void main(String[] args) {
+        Gerente g = new Gerente();
+        g.nombre = "Carlos";
+        g.departamento = "Sistemas";
+        g.trabajar();
+        g.organizar();
+    }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- PESTAÑA 4 -->
+    <div id="tab4" class="tab-content">
+        <h2>Unidad 4: Polimorfismo</h2>
+        <div class="box">
+            <h3>Concepto</h3>
+            <p>El <strong>polimorfismo</strong> permite que objetos de diferentes subclases respondan a una misma invocación de método de forma específica mediante la sobrescritura (anotación <code>@Override</code>).</p>
+        </div>
+        <div class="box">
+            <h3>Ejemplo práctico en Java</h3>
+            <pre><code>class Animal {
+    public void hacerSonido() {
+        System.out.println("Sonido genérico.");
+    }
+}
+
+class Gato extends Animal {
+    @Override
+    public void hacerSonido() {
+        System.out.println("El gato dice: ¡Miau!");
+    }
+}
+
+public class TestPolimorfismo {
+    public static void main(String[] args) {
+        Animal miAnimal = new Gato();
+        miAnimal.hacerSonido();
+    }
+}</code></pre>
+        </div>
+        <div class="box box-exercise">
+            <h3>Ejercicio Práctico</h3>
+            <p>Crea una clase base <code>Figura</code> con un método <code>void dibujar()</code>. Crea una clase derivada <code>Circulo</code> que extienda de <code>Figura</code> y sobrescriba <code>dibujar()</code> usando <code>@Override</code>.</p>
+        </div>
+        <div class="solution-container">
+            <button class="solution-btn" onclick="toggleSolution('sol4')">Ver Solución</button>
+            <div id="sol4" class="solution-content">
+                <h4>Solución sugerida:</h4>
+                <pre><code>class Figura {
+    public void dibujar() {
+        System.out.println("Dibujando figura genérica.");
+    }
+}
+
+class Circulo extends Figura {
+    @Override
+    public void dibujar() {
+        System.out.println("Dibujando un Círculo.");
+    }
+}
+
+public class TestFigura {
+    public static void main(String[] args) {
+        Figura f = new Circulo();
+        f.dibujar();
+    }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    Herramienta de Apoyo Académico Autónomo — Programación Avanzada (Java)
+</footer>
+
+<script>
+    function openTab(evt, tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(c => c.classList.remove('active'));
+
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(b => b.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        evt.currentTarget.classList.add('active');
+    }
+
+    function toggleSolution(solId) {
+        const solContent = document.getElementById(solId);
+        solContent.classList.toggle('show');
+    }
+</script>
+
+</body>
+</html>
